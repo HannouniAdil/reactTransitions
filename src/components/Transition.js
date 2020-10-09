@@ -28,8 +28,16 @@ class TransitionComp extends Component{
         } */}
        <Transition in={this.state.show}
        timeout= {2000}
+       mountOnEnter
+       unmountOnExit
        >
-        {state => <p>{state}</p>}
+        {state => <div style={{
+            background:'lightgray',
+            height: '100px',
+            transition: 'all 2s ease',
+            opacity: state==='exited' || state ==='exiting' ? 0 : 1
+        }}>
+        state is: {state} </div>}
        </Transition>
         <div className='showDiv' onClick={this.showToggle}>
             Show or Hide Component
