@@ -27,17 +27,21 @@ class TransitionComp extends Component{
             null
         } */}
        <Transition in={this.state.show}
-       timeout= {2000}
-       mountOnEnter
-       unmountOnExit
+       timeout= {{
+           enter:2000,
+           exit:50
+       }}
+           onEnter = { (node) =>{
+                   console.log('Enter')
+               }
+           }
+           onExit = { (node) =>{
+            console.log('Exit')
+        }
+    }
        >
-        {state => <div style={{
-            background:'lightgray',
-            height: '100px',
-            transition: 'all 2s ease',
-            opacity: state==='exited' || state ==='exiting' ? 0 : 1
-        }}>
-        state is: {state} </div>}
+        {state => <div className={`square square-${state}`}>
+        state is: square square-${state} </div>}
        </Transition>
         <div className='showDiv' onClick={this.showToggle}>
             Show or Hide Component
